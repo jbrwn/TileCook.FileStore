@@ -1,0 +1,177 @@
+{
+  "locked": false,
+  "version": -9998,
+  "projectFileDependencyGroups": {
+    "": [
+      "TileCook >= 0.1.0",
+      "Newtonsoft.Json >= 7.0.1"
+    ],
+    ".NETFramework,Version=v4.5.1": [],
+    "DNX,Version=v4.5.1": []
+  },
+  "libraries": {
+    "Newtonsoft.Json/7.0.1": {
+      "serviceable": false,
+      "sha": "q3V4KLetMLnt1gpAVWgtXnHjKs0UG/RalBc29u2ZKxd5t5Ze4JBL5WiiYIklJyK/5CRiIiNwigVQUo0FgbsuWA==",
+      "frameworks": {
+        ".NETFramework,Version=v4.5.1": {
+          "dependencies": {},
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/net45/Newtonsoft.Json.dll"
+          ],
+          "compileAssemblies": [
+            "lib/net45/Newtonsoft.Json.dll"
+          ]
+        },
+        "DNX,Version=v4.5.1": {
+          "dependencies": {},
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/net45/Newtonsoft.Json.dll"
+          ],
+          "compileAssemblies": [
+            "lib/net45/Newtonsoft.Json.dll"
+          ]
+        }
+      },
+      "files": [
+        "Newtonsoft.Json.7.0.1.nupkg",
+        "Newtonsoft.Json.7.0.1.nupkg.sha512",
+        "Newtonsoft.Json.nuspec",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll",
+        "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.xml",
+        "tools/install.ps1"
+      ]
+    },
+    "TileCook/0.1.0": {
+      "serviceable": false,
+      "sha": "9S6SUAImqhVXp/9az8awEW5Nw0sMmTsVhiMUxO91mfAhUKjeQSyK24zgzlcyrkOFHNl6vqkM575NQPZWDp+ltA==",
+      "frameworks": {
+        ".NETFramework,Version=v4.5.1": {
+          "dependencies": {
+            "TileProj": "0.3.0"
+          },
+          "frameworkAssemblies": [
+            "mscorlib",
+            "System",
+            "System.Core",
+            "Microsoft.CSharp"
+          ],
+          "runtimeAssemblies": [
+            "lib/net451/TileCook.dll"
+          ],
+          "compileAssemblies": [
+            "lib/net451/TileCook.dll"
+          ]
+        },
+        "DNX,Version=v4.5.1": {
+          "dependencies": {
+            "TileProj": "0.3.0"
+          },
+          "frameworkAssemblies": [
+            "mscorlib",
+            "System",
+            "System.Core",
+            "Microsoft.CSharp"
+          ],
+          "runtimeAssemblies": [
+            "lib/dnx451/TileCook.dll"
+          ],
+          "compileAssemblies": [
+            "lib/dnx451/TileCook.dll"
+          ]
+        }
+      },
+      "files": [
+        "TileCook.0.1.0.nupkg",
+        "TileCook.0.1.0.nupkg.sha512",
+        "TileCook.nuspec",
+        "lib/dnx451/TileCook.dll",
+        "lib/dnx451/TileCook.xml",
+        "lib/net451/TileCook.dll",
+        "lib/net451/TileCook.xml"
+      ]
+    },
+    "TileCook.FileStore/0.1.0": {
+      "serviceable": false,
+      "sha": "fMCgLjX6Tddr8+JTINBs8eYyC6VFvT+gG5rhyzAhXVcVqUVtYH3dBlB6T7D9weoTKQGGldmtPRgxrrzLAnh4FQ==",
+      "frameworks": {
+        ".NETFramework,Version=v4.5.1": {
+          "dependencies": {},
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [],
+          "compileAssemblies": []
+        },
+        "DNX,Version=v4.5.1": {
+          "dependencies": {
+            "TileCook": "0.1.0"
+          },
+          "frameworkAssemblies": [
+            "mscorlib",
+            "System",
+            "System.Core",
+            "Microsoft.CSharp"
+          ],
+          "runtimeAssemblies": [
+            "lib/net452/TileCook.FileStore.dll"
+          ],
+          "compileAssemblies": [
+            "lib/net452/TileCook.FileStore.dll"
+          ]
+        }
+      },
+      "files": [
+        "TileCook.FileStore.0.1.0.nupkg",
+        "TileCook.FileStore.0.1.0.nupkg.sha512",
+        "TileCook.FileStore.nuspec",
+        "lib/dnx452/TileCook.FileStore.dll",
+        "lib/dnx452/TileCook.FileStore.xml",
+        "lib/net452/TileCook.FileStore.dll",
+        "lib/net452/TileCook.FileStore.xml"
+      ]
+    },
+    "TileProj/0.3.0": {
+      "serviceable": false,
+      "sha": "PUtRFRt76oOGzDRJ+gLqiR/uhJOthxQWYI00TqaDoLajGFmC8I4QUWvx4Eio5N44pWv+BIHKLdogiivwxcEt8g==",
+      "frameworks": {
+        ".NETFramework,Version=v4.5.1": {
+          "dependencies": {},
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/net45/TileProj.dll"
+          ],
+          "compileAssemblies": [
+            "lib/net45/TileProj.dll"
+          ]
+        },
+        "DNX,Version=v4.5.1": {
+          "dependencies": {},
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/net45/TileProj.dll"
+          ],
+          "compileAssemblies": [
+            "lib/net45/TileProj.dll"
+          ]
+        }
+      },
+      "files": [
+        "TileProj.0.3.0.nupkg",
+        "TileProj.0.3.0.nupkg.sha512",
+        "TileProj.nuspec",
+        "lib/net45/TileProj.dll"
+      ]
+    }
+  }
+}
