@@ -1,5 +1,5 @@
 ﻿{
-  "version": "0.1.0",
+  "version": "0.1.0-*",
   "description": "TileCook File TileStore",
   "authors": [ "Joel Brown" ],
   "tags": [ "" ],
@@ -7,19 +7,21 @@
   "licenseUrl": "",
 
   "dependencies": {
-    "TileCook": "0.1.0",
-    "Newtonsoft.Json": "7.0.1"
+    "TileCook": "0.1.0-*"
   },
 
   "frameworks": {
     "net451": { },
-    "dnx451": { }
-    //"dnxcore50": {
-    //  "dependencies": {
-    //    "System.Collections": "4.0.10-beta-22816",
-    //    "System.Linq": "4.0.0-beta-22816",
-    //    "System.Threading": "4.0.10-beta-22816",
-    //    "Microsoft.CSharp": "4.0.0-beta-22816"
-    //  }
+    "dotnet5.4": {
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.1-beta-23516",
+        "System.Collections": "4.0.11-beta-23516",
+        "System.Linq": "4.0.1-beta-23516",
+        "System.Runtime": "4.0.21-beta-23516",
+        "System.Threading": "4.0.11-beta-23516",
+        "System.IO": "4.0.11-beta-23516",
+        "System.IO.FileSystem": "4.0.1-beta-23516"
+      }
+    }
   }
-} }
+} 

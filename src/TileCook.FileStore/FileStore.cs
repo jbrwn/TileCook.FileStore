@@ -2,51 +2,11 @@
 using System.IO;
 using System.Collections.Generic;
 using TileProj;
-using Newtonsoft.Json.Linq;
 
 namespace TileCook.FileStore
 {
     public class FileStore : IWritableTileStore
     {
-
-        public FileStore(string resource, string id = null)
-        {
-            BasePath = resource;
-            Id = id ?? new DirectoryInfo(resource).Name;
-
-            //load metadata.json
-            string metadata = Path.Combine(resource, "metadata.json");
-            JObject json = new JObject();
-            if (File.Exists(metadata))
-            {
-                json = JObject.Parse(File.ReadAllText(metadata));
-            }
-
-            Name = json.Value<string>("name") ?? "";
-            Description = json.Value<string>("description") ?? "";
-            MinZoom = json["minzoom"] == null ? 0 : Convert.ToInt32(json["minzoom"]);
-            MaxZoom = json["maxzoom"] == null ? 14 : Convert.ToInt32(json["maxzoom"]);
-            if (json["bounds"] != null)
-            {
-                string[] bounds = json.Value<string>("bounds").Split(',');
-                Bounds = new Envelope(
-                    Convert.ToDouble(bounds[0]),
-                    Convert.ToDouble(bounds[1]),
-                    Convert.ToDouble(bounds[2]),
-                    Convert.ToDouble(bounds[3])
-                );
-            }
-            else
-            {
-                Bounds = new Envelope(-180, -90, 180, 90);
-            }
-
-            if (json["json"] != null)
-            {
-                VectorLayers = json["json"].Value<IEnumerable<VectorLayer>>("vector_layers");
-            }
-        }
-
         public string BasePath { get; private set; }
         public string Id { get; private set; }
         public string Name { get; private set; }
@@ -55,6 +15,26 @@ namespace TileCook.FileStore
         public int MaxZoom { get; private set; }
         public IEnvelope Bounds { get; private set; }
         public IEnumerable<VectorLayer> VectorLayers { get; private set; }
+        
+        public FileStore(string resource, string id = null, string name = null, string description = null, int? minzoom = null, int? maxzoom = null, IEnvelope bounds = null, IEnumerable<VectorLayer> vlayers = null)
+        {
+            if (resource == null)
+            {
+                throw new ArgumentNullException("Base path resource");
+            }
+            if (!Directory.Exists(resource))
+            {
+                throw new ArgumentException("Invalid base path resource");
+            }
+            BasePath = resource;
+            Id = id ?? new DirectoryInfo(resource).Name;
+            Name = name ?? "";
+            Description = description ?? "";
+            MinZoom = minzoom == null ? 0 : minzoom.Value;
+            MaxZoom = maxzoom == null ? 14 : maxzoom.Value;
+            Bounds = bounds ?? new Envelope(-180, -90, 180, 90);
+            VectorLayers = vlayers;
+        }
 
         public VectorTile GetTile(ICoord coord)
         {
@@ -65,7 +45,7 @@ namespace TileCook.FileStore
             {
                 img = File.ReadAllBytes(path);
             }
-            catch (FileNotFoundException e)
+            catch (System.IO.FileNotFoundException e)
             {
                 //log exception
                 return null;
