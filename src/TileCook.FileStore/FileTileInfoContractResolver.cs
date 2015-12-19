@@ -10,9 +10,10 @@ public class FileTileInfoContractResolver : DefaultContractResolver
     {
         PropertyMappings = new Dictionary<string, string> 
         {
-            {"Id", "id"},
             {"Name", "name"},
             {"Description", "description"},
+            {"Scheme", "scheme"},
+            {"Format", "format"},
             {"MinZoom", "minzoom"},
             {"MaxZoom", "maxzoom"},
             {"Bounds", "bounds"},

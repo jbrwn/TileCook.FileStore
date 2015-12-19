@@ -2,6 +2,7 @@
 using System.IO;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace TileCook.FileStore
 {
@@ -22,7 +23,12 @@ namespace TileCook.FileStore
                 string json = File.ReadAllText(infopath);
                 Info = JsonConvert.DeserializeObject<TileInfo>(
                     json,
-                    new JsonSerializerSettings { ContractResolver = new FileTileInfoContractResolver() }
+                    new JsonSerializerSettings 
+                    { 
+                        ContractResolver = new FileTileInfoContractResolver(),
+                        NullValueHandling = NullValueHandling.Ignore,
+                        Converters = new List<JsonConverter>() { new StringEnumConverter() { CamelCaseText = true } }
+                    }
                );
             }
             else 
@@ -31,7 +37,7 @@ namespace TileCook.FileStore
             }
         }
 
-        public ITile GetTile(int z, int x, int y)
+        public Tile GetTile(int z, int x, int y)
         {
             string path = GetPath(z,x,y);
             byte[] img = null;
@@ -60,45 +66,37 @@ namespace TileCook.FileStore
             File.WriteAllBytes(path, tile.Buffer);
         }
         
-        public ITileInfo GetTileInfo()
+        public TileInfo GetTileInfo()
         {
-            //return TileInfo.Clone()
-            return new TileInfo()
-            {
-                Name = Info.Name,
-                Description = Info.Description,
-                MinZoom = Info.MinZoom,
-                MaxZoom = Info.MaxZoom,
-                Bounds = (double[])Info.Bounds.Clone(),
-                Center = Info.Center != null ? (double[])Info.Center.Clone() : null,
-                VectorLayers = Info.VectorLayers // To do: deep clone
-            };
+            return Info.DeepClone();
         }
         
-        public void SetTileInfo(ITileInfo tileinfo)
+        public void SetTileInfo(TileInfo tileinfo)
         {
-            // Set info
-            tileinfo.Validate();
-            Info.Name = tileinfo.Name;
-            Info.Description = tileinfo.Description;
-            Info.MinZoom = tileinfo.MinZoom;
-            Info.MaxZoom = tileinfo.MaxZoom;
-            Info.Bounds = (double[])tileinfo.Bounds.Clone();
-            Info.Center = tileinfo.Center != null ? (double[])Info.Center.Clone() : null;
-            Info.VectorLayers = tileinfo.VectorLayers; // To do: deep clone
+            if (!tileinfo.IsValid())
+            {
+                throw new ArgumentException("TileInfo is not valid", "tileinfo");
+            }
+            
+            Info = tileinfo.DeepClone();
             
             // write to disk
             string json = JsonConvert.SerializeObject(
                 Info, 
                 Formatting.Indented,
-                new JsonSerializerSettings { ContractResolver = new FileTileInfoContractResolver() }
+                new JsonSerializerSettings 
+                { 
+                    ContractResolver = new FileTileInfoContractResolver(),
+                    NullValueHandling = NullValueHandling.Ignore,
+                    Converters = new List<JsonConverter>() { new StringEnumConverter() { CamelCaseText = true } }
+                }
             );
             File.WriteAllText(Path.Combine(BasePath, "metadata.json"), json);
         }
 
         private string GetPath(int z, int x, int y)
         {
-            string filename = y.ToString() + ".pbf";
+            string filename = y.ToString() + "." + Info.Format.ToString().ToLower();
             return Path.Combine(
                 BasePath,
                 z.ToString(),
